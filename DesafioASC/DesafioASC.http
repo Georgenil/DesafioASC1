@@ -1,0 +1,6 @@
+@DesafioASC_HostAddress = http://localhost:5226
+
+GET {{DesafioASC_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
