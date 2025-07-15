@@ -1,0 +1,24 @@
+﻿using DesafioASC.Domain.Interfaces;
+
+namespace DesafioASC.Application.UseCases.Sala.Commands.Handlers
+{
+    public class UpdateSalaCommandHandler : ICommandHandler<UpdateSalaCommand>
+    {
+        private readonly ISalaRepository _salaRepository;
+        public UpdateSalaCommandHandler(ISalaRepository salaRepository)
+        {
+            _salaRepository = salaRepository;
+        }
+        public async Task Handle(UpdateSalaCommand request)
+        {
+            var salaBd = await _salaRepository.GetSalaByIdAsync(request.Id);
+            if (salaBd == null)
+                throw new Exception("Sala não foi cadastrada");
+
+            salaBd.Nome = request.Nome.Trim();
+            salaBd.CapacidadeMaxima = request.CapacidadeMaxima;
+
+            await _salaRepository.UpdateSalaAsync(salaBd);
+        }
+    }
+}

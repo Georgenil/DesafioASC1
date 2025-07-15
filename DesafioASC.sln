@@ -18,6 +18,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioASC.Persistence", "DesafioASC.Persistence\DesafioASC.Persistence.csproj", "{E7BF42E3-14E9-4136-9BEC-908563F956EB}"
 	ProjectSection(ProjectDependencies) = postProject
 		{287EC1A9-D8C5-4E27-BE78-966A8C138B5F} = {287EC1A9-D8C5-4E27-BE78-966A8C138B5F}
+		{CAB32FEB-E66F-4405-B118-A26A44756D8B} = {CAB32FEB-E66F-4405-B118-A26A44756D8B}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesafioASC.Domain", "DesafioASC.Domain\DesafioASC.Domain.csproj", "{287EC1A9-D8C5-4E27-BE78-966A8C138B5F}"
