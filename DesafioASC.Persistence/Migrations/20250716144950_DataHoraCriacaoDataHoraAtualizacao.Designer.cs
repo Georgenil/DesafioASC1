@@ -4,6 +4,7 @@ using DesafioASC.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesafioASC.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250716144950_DataHoraCriacaoDataHoraAtualizacao")]
+    partial class DataHoraCriacaoDataHoraAtualizacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,10 +45,6 @@ namespace DesafioASC.Persistence.Migrations
                     b.Property<DateTime>("DataHoraFim")
                         .HasColumnType("datetime2")
                         .HasColumnName("dataHoraFim");
-
-                    b.Property<int>("QuantidadePessoa")
-                        .HasColumnType("int")
-                        .HasColumnName("quantidadePessoa");
 
                     b.Property<int>("SalaId")
                         .HasColumnType("int")
