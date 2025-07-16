@@ -11,14 +11,14 @@ namespace DesafioASC.Application.UseCases.Sala.Commands.Handlers
         }
         public async Task Handle(UpdateSalaCommand request)
         {
-            var salaBd = await _salaRepository.GetSalaByIdAsync(request.Id);
+            var salaBd = await _salaRepository.GetByIdAsync(request.Id);
             if (salaBd == null)
                 throw new Exception("Sala não foi cadastrada");
 
             salaBd.Nome = request.Nome.Trim();
             salaBd.CapacidadeMaxima = request.CapacidadeMaxima;
 
-            await _salaRepository.UpdateSalaAsync(salaBd);
+            await _salaRepository.UpdateAsync(salaBd);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace DesafioASC.Application.UseCases.Sala.Queries.Handlers
 
         public async Task<Domain.Entities.Sala?> Handle(GetSalaByIdQuery request)
         {
-            return await _salaRepository.GetSalaByIdAsync(request.Id);
+            return await _salaRepository.GetByIdAsync(request.Id);
         }
     }
 }

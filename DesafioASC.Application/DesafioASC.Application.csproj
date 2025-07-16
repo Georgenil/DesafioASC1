@@ -10,9 +10,4 @@
     <ProjectReference Include="..\DesafioASC.Domain\DesafioASC.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UseCases\Reserva\Commands\Handlers\" />
-    <Folder Include="UseCases\Reserva\Queries\" />
-  </ItemGroup>
-
 </Project>

@@ -11,7 +11,7 @@ namespace DesafioASC.Application.UseCases.Sala.Commands.Handlers
         }
         public async Task Handle(DeleteSalaCommand request)
         {
-            await _salaRepository.DeleteSalaAsync(request.Id);
+            await _salaRepository.DeleteAsync(request.Id);
         }
     }
 }

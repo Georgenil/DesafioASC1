@@ -1,9 +1,15 @@
-﻿namespace DesafioASC.Application.UseCases.Sala.Commands
+﻿using System.Text.Json.Serialization;
+
+namespace DesafioASC.Application.UseCases.Sala.Commands
 {
     public class UpdateSalaCommand
     {
-        public int Id { get; set; }
         public string Nome { get; set; }
         public int CapacidadeMaxima { get; set; }
+        public DateTime DataHoraCriacao { get; set; } = DateTime.UtcNow;
+
+        [JsonIgnore]
+        public int Id { get; set; }
+
     }
 }

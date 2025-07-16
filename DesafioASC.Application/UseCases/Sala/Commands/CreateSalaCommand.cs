@@ -7,9 +7,10 @@ namespace DesafioASC.Application.UseCases.Sala.Commands
     {
         public string Nome { get; set; }
         public int CapacidadeMaxima { get; set; }
+        public DateTime DataHoraCriacao { get; set; } = DateTime.UtcNow;
 
         [JsonIgnore]
-        public int Id { get; internal set; }
+        public int Id { get; set; }
     }
 }
 

@@ -20,7 +20,7 @@ namespace DesafioASC.Application.UseCases.Sala.Commands.Handlers
                 CapacidadeMaxima = request.CapacidadeMaxima
             };
 
-            await _salaRepository.CreateSalaAsync(sala);
+            await _salaRepository.CreateAsync(sala);
         }
     }
 }
