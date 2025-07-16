@@ -5,7 +5,7 @@ namespace DesafioASC.Domain.Interfaces
     public interface IReservaRepository : IBaseRepository<Reserva>
     {
         Task<Reserva> GetByIdWithSalaAsync(int id);
-        Task<IList<Reserva>> GetAllWithSalaAsync();
+        Task<List<Reserva>> GetAllWithSalaAsync();
 
     }
 }

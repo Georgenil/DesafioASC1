@@ -26,17 +26,8 @@ namespace DesafioASC.Application.UseCases.Reserva.Commands.Handlers
                 if (res.SalaId == command.SalaId
                     && command.QuantidadePessoa > res.Sala.CapacidadeMaxima)
                 {
-                    throw new InvalidOperationException("Quantidade de pessoas ultrapassa a capacidade da sala");
+                    throw new InvalidOperationException("Não é possível fazer uma reserva que ultrapasse a qualtidade máxima de pessoas da Sala.");
                 }
-            }
-
-            bool conflito = reservas.Any(r =>
-                r.SalaId == command.SalaId &&
-                !(command.DataHoraFim <= r.DataHoraCriacao || command.DataHoraCriacao >= r.DataHoraFim));
-
-            if (conflito)
-            {
-                throw new InvalidOperationException("Já existe uma reserva para esta sala nesse período.");
             }
 
             var reserva = new Domain.Entities.Reserva
@@ -44,6 +35,7 @@ namespace DesafioASC.Application.UseCases.Reserva.Commands.Handlers
                 DataHoraCriacao = command.DataHoraCriacao,
                 DataHoraFim = command.DataHoraFim,
                 SalaId = command.SalaId,
+                QuantidadePessoa = command.QuantidadePessoa,
             };
             await _reservaRepository.CreateAsync(reserva);
         }

@@ -21,7 +21,7 @@ namespace DesafioASC.Persistence.Repositories
             return reserva ?? throw new KeyNotFoundException($"Reserva com ID {id} não encontrada.");
         }
 
-        public async Task<IList<Reserva>> GetAllWithSalaAsync()
+        public async Task<List<Reserva>> GetAllWithSalaAsync()
         {
             var reservas = await _context.Reservas
                         .Include(x => x.Sala)
