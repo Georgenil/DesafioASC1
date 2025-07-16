@@ -19,13 +19,20 @@ namespace DesafioASC.Persistence.Mapping
             builder.Property(c => c.SalaId)
                 .HasColumnName("salaId");
 
-            builder.Property(c => c.DataHoraInicio)
-                .HasColumnName("dataHoraInicio")
+            builder.Property(c => c.QuantidadePessoa)
+               .HasColumnName("quantidadePessoa")
+               .IsRequired();
+
+            builder.Property(c => c.DataHoraCriacao)
+                .HasColumnName("dataHoraCriacao")
                 .IsRequired();
 
             builder.Property(c => c.DataHoraFim)
                 .HasColumnName("dataHoraFim")
                 .IsRequired();
+
+            builder.Property(c => c.DataHoraAtualizacao)
+               .HasColumnName("dataHoraAtualizacao");
 
             builder.HasOne(r => r.Sala)
                  .WithMany(e => e.Reservas)

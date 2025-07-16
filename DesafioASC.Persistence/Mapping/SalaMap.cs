@@ -26,6 +26,13 @@ namespace DesafioASC.Persistence.Mapping
                 .HasColumnName("capacidadeMaxima")
                 .IsRequired();
 
+            builder.Property(c => c.DataHoraCriacao)
+                .HasColumnName("dataHoraCriacao")
+                .IsRequired();
+
+            builder.Property(c => c.DataHoraAtualizacao)
+               .HasColumnName("dataHoraAtualizacao");
+
             builder.HasMany(s => s.Reservas)
             .WithOne(r => r.Sala)
             .HasForeignKey(r => r.SalaId);
