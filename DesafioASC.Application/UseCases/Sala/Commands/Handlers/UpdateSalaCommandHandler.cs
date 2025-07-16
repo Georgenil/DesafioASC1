@@ -15,8 +15,9 @@ namespace DesafioASC.Application.UseCases.Sala.Commands.Handlers
             if (salaBd == null)
                 throw new Exception("Sala não foi cadastrada");
 
-            salaBd.Nome = request.Nome.Trim();
+            salaBd.Nome = request.Nome;
             salaBd.CapacidadeMaxima = request.CapacidadeMaxima;
+            salaBd.DataHoraAtualizacao = DateTime.Now;
 
             await _salaRepository.UpdateAsync(salaBd);
         }

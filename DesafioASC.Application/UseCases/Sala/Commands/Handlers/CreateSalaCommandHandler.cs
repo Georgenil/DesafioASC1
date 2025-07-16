@@ -16,8 +16,9 @@ namespace DesafioASC.Application.UseCases.Sala.Commands.Handlers
 
             var sala = new Domain.Entities.Sala
             {
-                Nome = request.Nome.Trim(),
-                CapacidadeMaxima = request.CapacidadeMaxima
+                Nome = request.Nome,
+                CapacidadeMaxima = request.CapacidadeMaxima,
+                DataHoraCriacao = DateTime.Now
             };
 
             await _salaRepository.CreateAsync(sala);
