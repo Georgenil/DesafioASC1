@@ -4,17 +4,20 @@ namespace DesafioASC.Application.UseCases.Reserva.Commands.Handlers
 {
     public class UpdateReservaCommandHandler : ICommandHandler<UpdateReservaCommand>
     {
-        private readonly IReservaRepository _reservaRepository;
-        public UpdateReservaCommandHandler(IReservaRepository reservaRepository)
+        private readonly IReservaWrite _reservaWrite;
+        private readonly IReservaRead _reservaRead;
+        public UpdateReservaCommandHandler(IReservaWrite reservaWrite,IReservaRead reservaRead)
         {
-            _reservaRepository = reservaRepository;
+            _reservaWrite = reservaWrite;
+            _reservaRead = reservaRead;
         }
+
         public async Task Handle(UpdateReservaCommand command)
         {
             if (command.DataHoraFim <= command.DataHoraCriacao)
                 throw new ArgumentException("A data de fim deve ser posterior à data de criação.");
 
-            var reservaBd = await _reservaRepository.GetByIdAsync(command.Id);
+            var reservaBd = await _reservaRead.GetReservaByIdAsync(command.Id);
 
             if (reservaBd == null)
                 throw new KeyNotFoundException("Reserva não encontrada.");
@@ -38,7 +41,7 @@ namespace DesafioASC.Application.UseCases.Reserva.Commands.Handlers
             reservaBd.QuantidadePessoa = command.QuantidadePessoa;
 
            
-            await _reservaRepository.UpdateAsync(reservaBd);
+            await _reservaWrite.UpdateReservaAsync(reservaBd);
         }
     }
 }

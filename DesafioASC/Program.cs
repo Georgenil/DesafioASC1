@@ -40,8 +40,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Adicionando repositories
 builder.Services.AddScoped<ISalaRepository, SalaRepository>();
-builder.Services.AddScoped<IReservaRepository, ReservaRepository>();
-
+builder.Services.AddScoped<IReservaWrite, ReservaWrite>();
+builder.Services.AddScoped<IReservaRead, ReservaRead>();
 
 //builder.Services.AddHandlers();
 
@@ -77,8 +77,8 @@ builder.Services.AddSwaggerGen(options =>
 
     options.IncludeXmlComments(caminhoXmlDoc);
     // using System.Reflection;
-    //var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    //options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 
 var app = builder.Build();
