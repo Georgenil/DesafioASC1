@@ -2,6 +2,7 @@
 using DesafioASC.Domain.Interfaces;
 using DesafioASC.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace DesafioASC.Persistence.Repositories
 {
@@ -46,6 +47,8 @@ namespace DesafioASC.Persistence.Repositories
 
             return entity ?? throw new KeyNotFoundException($"Item com ID {id} não encontrado.");
         }
+
+
 
         public async Task<T> UpdateAsync(T entity)
         {

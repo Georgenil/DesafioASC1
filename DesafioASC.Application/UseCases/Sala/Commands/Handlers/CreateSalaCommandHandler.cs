@@ -14,6 +14,10 @@ namespace DesafioASC.Application.UseCases.Sala.Commands.Handlers
             if (string.IsNullOrEmpty(request.Nome))
                 throw new Exception("Sala precisa ter um nome");
 
+            var salaBd = _salaRepository.GetSalaAsync(s => s.Nome.Trim().ToLower() == request.Nome.Trim().ToLower());
+            if (salaBd != null)
+                throw new Exception("Sala já cadastrada");
+
             var sala = new Domain.Entities.Sala
             {
                 Nome = request.Nome,

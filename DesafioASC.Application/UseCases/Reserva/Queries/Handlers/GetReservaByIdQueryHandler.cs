@@ -1,17 +1,18 @@
 ﻿using DesafioASC.Domain.Interfaces;
+using DesafioASC.Persistence.Services;
 
 namespace DesafioASC.Application.UseCases.Reserva.Queries.Handlers
 {
     public class GetReservaByIdQueryHandler : IQueryHandler<GetReservaByIdQuery, Domain.Entities.Reserva?>
     {
-        private readonly IReservaRead _reservaRead;
-        public GetReservaByIdQueryHandler(IReservaRead reservaRead)
+        private readonly IReservaService _reservaService;
+        public GetReservaByIdQueryHandler(IReservaService reservaService)
         {
-            _reservaRead = reservaRead;
+            _reservaService = reservaService;
         }
         public async Task<Domain.Entities.Reserva?> Handle(GetReservaByIdQuery request)
         {
-            return await _reservaRead.GetReservaByIdAsync(request.Id);
+            return await _reservaService.GetReservaByIdAsync(request.Id);
         }
     }
 }

@@ -1,25 +1,18 @@
 ﻿using DesafioASC.Domain.Interfaces;
+using DesafioASC.Persistence.Services;
 
 namespace DesafioASC.Application.UseCases.Reserva.Commands.Handlers
 {
     public class DeleteReservaCommandHandler : ICommandHandler<DeleteReservaCommand>
     {
-        private readonly IReservaWrite _reservaWrite;
-        private readonly IReservaRead _reservaRead;
-        public DeleteReservaCommandHandler(IReservaWrite reservaWrite,
-            IReservaRead reservaRead)
+        private readonly IReservaService _reservaService;
+        public DeleteReservaCommandHandler(IReservaService reservaService)
         {
-            _reservaWrite = reservaWrite;
-            _reservaRead = reservaRead;
+            _reservaService = reservaService;
         }
         public async Task Handle(DeleteReservaCommand command)
         {
-            var reserva = await _reservaRead.GetReservaByIdAsync(command.Id);
-            if (reserva == null)
-            {
-                throw new KeyNotFoundException("Reserva não encontrada.");
-            }
-            await _reservaWrite.DeleteReservaAsync(reserva.Id);
+            await _reservaService.DeleteReservaAsync(command.Id);
         }
     }
 }

@@ -11,9 +11,14 @@ using DesafioASC.Domain.Interfaces;
 using DesafioASC.Persistence;
 using DesafioASC.Persistence.Context;
 using DesafioASC.Persistence.Repositories;
+using DesafioASC.Persistence.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.OpenApi.Models;
+using Polly;
+using Polly.CircuitBreaker;
+using Polly.Registry;
+using Polly.Retry;
 using System.Reflection;
 using System.Text.Json.Serialization;
 
@@ -38,10 +43,39 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
+// Configurando Resiliência
+builder.Services.AddResiliencePipeline("pedido-pipeline", pipeline =>
+{
+    pipeline.AddRetry(new RetryStrategyOptions
+    {
+        MaxRetryAttempts = 3,
+        Delay = TimeSpan.FromSeconds(2),
+        BackoffType = DelayBackoffType.Exponential
+    });
+
+    pipeline.AddTimeout(TimeSpan.FromSeconds(3));
+
+    pipeline.AddCircuitBreaker(new CircuitBreakerStrategyOptions
+    {
+        FailureRatio = 0.5,
+        SamplingDuration = TimeSpan.FromSeconds(30),
+        MinimumThroughput = 5,
+        BreakDuration = TimeSpan.FromSeconds(15)
+    });
+});
+
+
 // Adicionando repositories
 builder.Services.AddScoped<ISalaRepository, SalaRepository>();
 builder.Services.AddScoped<IReservaWrite, ReservaWrite>();
 builder.Services.AddScoped<IReservaRead, ReservaRead>();
+builder.Services.AddScoped<IReservaService, ReservaService>();
+
+builder.Services.AddScoped(sp =>
+{
+    var provider = sp.GetRequiredService<ResiliencePipelineProvider<string>>();
+    return provider.GetPipeline("pedido-pipeline");
+});
 
 //builder.Services.AddHandlers();
 
