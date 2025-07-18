@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DesafioASC.Application\DesafioASC.Application.csproj" />
+    <ProjectReference Include="..\DesafioASC.Domain\DesafioASC.Domain.csproj" />
   </ItemGroup>
 
 </Project>

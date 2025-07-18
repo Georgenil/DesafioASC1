@@ -30,7 +30,7 @@ namespace DesafioASC.API.Controllers
         {
             await _dispatcher.Dispatch(command);
 
-            return CreatedAtAction(nameof(GetById), new { id = command.Id }, null);
+            return CreatedAtAction(nameof(GetById), new { id = command.Id }, command);
         }
 
         ///<summary>
