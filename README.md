@@ -37,3 +37,4 @@ Por meio dele, é possível:
 2. Aplique as migrações: `dotnet ef database update`.
 
 ## Link para a documentação PDF
+https://drive.google.com/file/d/1xOvGN6LwvRIhohWZomSJmp0Xm5b69EV0/view?usp=sharing
