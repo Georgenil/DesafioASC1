@@ -1,6 +1,6 @@
-# DesafioASC
+# Sistema de Gestão de Reservas de Salas
 
-Este sistema foi desenvolvido dentro do prazo de 4 dias, visando centralizar e otimizar o processo de agendamento de salas, eliminando o uso de planilhas, e-mails e outros métodos descentralizados. Com uma interface moderna e intuitiva, ele é ideal para pequenas e médias empresas que buscam uma gestão eficiente, segura e escalável de seus espaços físicos. 
+Este sistema foi desenvolvido para ser entregue dentro do prazo de 4 dias, visando centralizar e otimizar o processo de agendamento de salas, eliminando o uso de planilhas, e-mails e outros métodos descentralizados. Com uma interface moderna e intuitiva, ele é ideal para pequenas e médias empresas que buscam uma gestão eficiente, segura e escalável de seus espaços físicos. 
 
 Por meio dele, é possível: 
 
